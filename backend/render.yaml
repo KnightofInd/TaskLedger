@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: taskledger-backend
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.1
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.0-flash-exp
+      - key: DATABASE_URL
+        sync: false
+      - key: DATABASE_ECHO
+        value: False
+      - key: APP_NAME
+        value: TaskLedger
+      - key: ENVIRONMENT
+        value: production
+      - key: LOG_LEVEL
+        value: INFO
+      - key: SITE_URL
+        sync: false
+      - key: SITE_NAME
+        value: TaskLedger
+      - key: CORS_ORIGINS
+        sync: false
